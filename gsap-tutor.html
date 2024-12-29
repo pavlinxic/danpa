@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>   
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "sans-serif";
+      }
+      .selector{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: orange;
+      }
+
+      svg{
+        border: 1px solid #000;
+      }
+
+      .path{
+        stroke-width: 10px;
+        stroke:aqua;
+        opacity: 0;
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <svg width="500" height="250" xmlns="http://www.w3.org/2000/svg">
+
+      <path class="path" d="M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="aqua" fill="transparent"/>
+
+    
+    </svg>
+    <div class="selector"></div>
+    <script>
+      gsap.registerPlugin(MotionPathPlugin)
+
+      gsap.to('.selector', {
+        duration:2,
+        motionPath:{ 
+          path:document.querySelector('.path'),
+          align: '.path',
+          alignOrigin: [.5,.5],
+          autoRotate:true,
+          start:.1,
+        },
+        ease:'bounce'
+      })
+    </script>
+  </body>
+</html>
